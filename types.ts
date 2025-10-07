@@ -1,5 +1,4 @@
-// Fix: To resolve the "Cannot find namespace 'JSX'" error, React must be imported.
-// The `JSX.Element` type requires the JSX namespace to be available.
+// Fix: Import React to provide the JSX namespace for the `JSX.Element` type.
 import React from 'react';
 
 export enum ModuleStatus {

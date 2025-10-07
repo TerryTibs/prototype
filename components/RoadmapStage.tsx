@@ -9,7 +9,9 @@ interface RoadmapStageProps {
 }
 
 const RoadmapStage: React.FC<RoadmapStageProps> = ({ stageData }) => {
-  const [isPrototypeVisible, setPrototypeVisible] = useState(false);
+  const [prototypeToShow, setPrototypeToShow] = useState<number | null>(null);
+
+  const canShowPrototype = stageData.stage === 1 || stageData.stage === 2 || stageData.stage === 3 || stageData.stage === 4;
 
   return (
     <section>
@@ -25,14 +27,14 @@ const RoadmapStage: React.FC<RoadmapStageProps> = ({ stageData }) => {
       </div>
       <p className="text-slate-400 mb-6 max-w-4xl">{stageData.description}</p>
       
-      {stageData.stage === 1 && (
+      {canShowPrototype && (
         <div className="mb-8">
           <button
-            onClick={() => setPrototypeVisible(true)}
+            onClick={() => setPrototypeToShow(stageData.stage)}
             className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 focus:ring-offset-slate-900 transition-colors"
           >
             <PlayIcon />
-            View Stage 1 Prototype Code
+            View Stage {stageData.stage} Prototype Code
           </button>
         </div>
       )}
@@ -43,7 +45,12 @@ const RoadmapStage: React.FC<RoadmapStageProps> = ({ stageData }) => {
         ))}
       </div>
       
-      {isPrototypeVisible && <PrototypeViewer onClose={() => setPrototypeVisible(false)} />}
+      {prototypeToShow !== null && (
+        <PrototypeViewer 
+          stage={prototypeToShow} 
+          onClose={() => setPrototypeToShow(null)} 
+        />
+      )}
     </section>
   );
 };
