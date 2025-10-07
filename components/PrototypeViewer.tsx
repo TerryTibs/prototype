@@ -1,5 +1,5 @@
 import React from 'react';
-import { STAGE_1_PROTOTYPE_CODE, STAGE_2_PROTOTYPE_CODE, STAGE_3_PROTOTYPE_CODE, STAGE_4_PROTOTYPE_CODE } from '../constants';
+import { STAGE_1_PROTOTYPE_CODE, STAGE_2_PROTOTYPE_CODE, STAGE_3_PROTOTYPE_CODE, STAGE_4_PROTOTYPE_CODE, STAGE_5_PROTOTYPE_CODE } from '../constants';
 
 interface PrototypeViewerProps {
   stage: number;
@@ -141,6 +141,47 @@ const Stage4ResultPlaceholder = () => (
     </div>
 );
 
+const Stage5ResultPlaceholder = () => (
+    <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-600 h-full flex flex-col lg:flex-row gap-4">
+        {/* Terminal Output */}
+        <div className="flex-1 bg-black/50 rounded-md p-3 font-mono text-xs text-slate-300 overflow-auto">
+            <p className="text-green-400">&gt; python sra_integration_demo.py</p>
+            <p>--- [Part 1] Running SRA... ---</p>
+            <p>SRA run complete. Generated memory graph...</p>
+            <p>--- [Part 2] Running SUL... ---</p>
+            <p>SUL analysis complete. Discovered 8 unique symbols.</p>
+            <p>--- [Part 3] Living Kernel is analyzing... ---</p>
+            <p className="text-yellow-400">[Meta-Controller]: Found highly correlated symbols: S2 and S5</p>
+            <p className="text-yellow-400">[Meta-Controller]: Proposing a new rule to unify them.</p>
+            <p className="text-cyan-400">[Living Kernel]: Proposed Rule ID: rule-xyz. Sandbox test passed: True</p>
+            <p className="font-bold mt-2">--- [Part 4] Human Approval Required ---</p>
+            <p className="text-white bg-blue-600 px-1">ACTION REQUIRED: Open http://127.0.0.1:5000 and approve rule 'rule-xyz'.</p>
+            <p>Press Enter after you have approved the rule...</p>
+            <span className="bg-green-500 w-2 h-4 inline-block animate-pulse ml-1"></span>
+        </div>
+        {/* Web UI */}
+        <div className="flex-1 bg-slate-100 rounded-md p-3 flex flex-col">
+             <div className="flex items-center gap-2 mb-3 pb-2 border-b">
+                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <div className="flex-1 bg-slate-200 rounded text-center text-xs text-slate-600 py-1">http://127.0.0.1:5000</div>
+             </div>
+             <div className="bg-white rounded p-4 flex-grow">
+                <h3 className="text-slate-800 font-bold text-lg">Rule Approval Dashboard</h3>
+                <div className="mt-4 border border-slate-300 rounded p-3 bg-slate-50">
+                    <p className="text-slate-700 font-semibold">Proposed Rule: <span className="font-mono bg-slate-200 px-1 rounded">rule-xyz</span></p>
+                    <p className="text-slate-500 text-sm mt-1">Status: <span className="text-orange-600 font-semibold">Pending Approval</span></p>
+                    <div className="mt-3 flex gap-2">
+                        <button className="bg-green-600 hover:bg-green-700 text-white text-sm font-semibold py-1 px-3 rounded">Approve</button>
+                        <button className="bg-red-600 hover:bg-red-700 text-white text-sm font-semibold py-1 px-3 rounded">Reject</button>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+);
+
 
 const stageInfo: { [key: number]: any } = {
   1: {
@@ -210,6 +251,35 @@ const stageInfo: { [key: number]: any } = {
       </>
     ),
     outputPlaceholder: <Stage4ResultPlaceholder />,
+  },
+  5: {
+    title: "Stage 5 Integrated Demo: The Living Kernel",
+    code: STAGE_5_PROTOTYPE_CODE,
+    filename: "sra_integration_demo.py",
+    runInstructions: (
+        <>
+            <p className="text-sm text-slate-400 mb-2">This demo requires a 'living_kernel' Python package (as described in the prompt) and two terminals to run.</p>
+            <p className="font-semibold mt-2 mb-1 text-slate-300">Dependencies:</p>
+            <code className="block bg-slate-900 text-cyan-400 p-2 rounded text-xs font-mono mb-2">pip install torch networkx tqdm</code>
+            <p className="font-semibold mt-2 mb-1 text-slate-300">Terminal 1 (Web Dashboard):</p>
+            <code className="block bg-slate-900 text-cyan-400 p-2 rounded text-xs font-mono mb-2">python -m living_kernel.webapp</code>
+            <p className="font-semibold mt-2 mb-1 text-slate-300">Terminal 2 (Main Demo):</p>
+            <code className="block bg-slate-900 text-cyan-400 p-2 rounded text-xs font-mono">python sra_integration_demo.py</code>
+        </>
+    ),
+    description: (
+      <>
+        <p className="text-sm text-slate-400 mb-4">This final script integrates all previous stages with the 'Living Kernel' framework. It demonstrates the full, end-to-end lifecycle of a self-modifying system:</p>
+        <ol className="list-decimal list-inside text-sm text-slate-400 space-y-1">
+            <li>The SRA runs to generate a memory graph from experience.</li>
+            <li>The SUL organizes these thoughts into a stable symbolic language.</li>
+            <li>The Meta-Controller analyzes the symbol relationships and proposes a new cognitive rule for itself.</li>
+            <li>The system pauses and requires human approval via a web dashboard before the new rule becomes active.</li>
+            <li>Once approved, the system can apply its new, self-generated logic.</li>
+        </ol>
+      </>
+    ),
+    outputPlaceholder: <Stage5ResultPlaceholder />,
   }
 };
 
@@ -249,11 +319,17 @@ const PrototypeViewer: React.FC<PrototypeViewerProps> = ({ stage, onClose }) => 
           {/* Right Side: Instructions & Output */}
           <div className="flex flex-col gap-6">
             <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
-              <h3 className="font-semibold text-slate-300 mb-2">How to Run Locally</h3>
-              <p className="text-sm text-slate-400 mb-2">To run this script, you'll need Python and the following libraries:</p>
-              <code className="block bg-slate-900 text-cyan-400 p-2 rounded text-xs font-mono">
-                {currentStage.runInstructions}
-              </code>
+                <h3 className="font-semibold text-slate-300 mb-2">How to Run Locally</h3>
+                {typeof currentStage.runInstructions === 'string' ? (
+                    <>
+                        <p className="text-sm text-slate-400 mb-2">To run this script, you'll need Python and the following libraries:</p>
+                        <code className="block bg-slate-900 text-cyan-400 p-2 rounded text-xs font-mono">
+                            {currentStage.runInstructions}
+                        </code>
+                    </>
+                ) : (
+                    currentStage.runInstructions
+                )}
             </div>
 
             <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700">

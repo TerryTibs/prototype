@@ -1,4 +1,3 @@
-// Fix: Import React to provide the JSX namespace for the `JSX.Element` type.
 import React from 'react';
 
 export enum ModuleStatus {
@@ -15,7 +14,8 @@ export interface SraModule {
   existingTech: string;
   novelAspect: string;
   status: ModuleStatus;
-  icon: JSX.Element;
+  // Fix: Changed from JSX.Element to React.ReactElement to explicitly use the React import and avoid potential 'JSX' namespace issues.
+  icon: React.ReactElement;
 }
 
 export interface RoadmapStageData {

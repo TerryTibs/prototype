@@ -58,6 +58,27 @@ const GlobeIcon = () => (
     </svg>
 );
 
+const CogsIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-fuchsia-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10.343 3.94c.09-.542.56-1.007 1.11-1.226l.558-.223c.55-.22 1.158.026 1.485.526l.332.51c.326.5.933.72 1.485.52l.558-.224c.55-.22 1.158.026 1.486.526l.332.51c.326.5.933.72 1.485.52l.558-.224c.55-.22 1.158.026 1.486.526l.332.51c.327.5.933.72 1.485.52l.558-.224c.55-.22 1.023.232 1.023.818v9.236c0 .586-.473 1.04-1.023.818l-.558-.224a1.954 1.954 0 00-1.486.52l-.332.512c-.326.5-.933.72-1.485.52l-.558-.223c-.55-.22-1.158.026-1.485.526l-.332.51c-.327.5-.933.72-1.485.52l-.558-.223c-.55-.22-1.158.026-1.486.526l-.332.51c-.326.5-.933.72-1.485.52l-.558-.223c-.55-.22-1.023.232-1.023.818V3.94z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zM12 6.75c-.621 0-1.22.096-1.78.272M12 17.25c.621 0 1.22-.096 1.78-.272" />
+    </svg>
+);
+
+const ShieldIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" />
+    </svg>
+);
+
+const UserCheckIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-4.663l.001.109m-8.232 1.352a5.25 5.25 0 00-1.256.387m1.256-.387a2.625 2.625 0 112.625 0M8.232 9.082a2.625 2.625 0 015.25 0m-5.25 0a2.625 2.625 0 00-5.25 0m5.25 0h.008v.008H8.232V9.082zM19.5 7.125l-2.625 2.625m0 0l-2.625-2.625M16.875 9.75l2.625-2.625" />
+    </svg>
+);
+
+
 export const PlayIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
@@ -165,6 +186,40 @@ export const roadmapData: RoadmapStageData[] = [
         icon: <DnaIcon />
       },
     ]
+  },
+  {
+    stage: 5,
+    title: "The Living Kernel: Self-Modification",
+    description: "The final stage integrates the SRA with a governance framework, creating a 'Living Kernel'. This system can analyze its own cognitive patterns, propose new rules to modify its behavior, and submit them for human approval, enabling safe, auditable self-evolution.",
+    modules: [
+      {
+        name: "The Living Kernel",
+        acronym: "LK",
+        description: "The core governance engine containing the RuleStore and MetaController. It manages the lifecycle of cognitive rules from proposal to active deployment.",
+        existingTech: "Rule engines, in-memory databases (for the RuleStore). The MetaController uses introspection on the SUL's output.",
+        novelAspect: "A meta-level cognitive process that explicitly reasons about improving the system's own operational logic.",
+        status: ModuleStatus.CORE_INNOVATION,
+        icon: <CogsIcon />,
+      },
+      {
+        name: "Safe Execution Sandbox",
+        acronym: "SES",
+        description: "A secure environment where newly proposed rules are tested against example data before being presented for approval. This prevents unstable code from affecting the core system.",
+        existingTech: "Code sandboxing libraries, unit testing frameworks.",
+        novelAspect: "Provides a 'cognitive proving ground' where the AI can safely experiment on itself, generating evidence for the human reviewer.",
+        status: ModuleStatus.ADVANCED_PROTOTYPE,
+        icon: <ShieldIcon />,
+      },
+      {
+        name: "Human-in-the-Loop Governance",
+        acronym: "HLG",
+        description: "A web dashboard that serves as the essential 'airlock' for system changes. It displays proposed rules and their test results, requiring explicit human approval before a rule becomes active.",
+        existingTech: "Basic web frameworks (e.g., Flask, React). The key is the process, not the technology.",
+        novelAspect: "Ensures that the AI's self-evolution is always guided and auditable by a human operator, maintaining safety and control.",
+        status: ModuleStatus.IMPLEMENTABLE_TODAY,
+        icon: <UserCheckIcon />,
+      },
+    ],
   }
 ];
 
@@ -1172,4 +1227,225 @@ if __name__ == "__main__":
     # 5. Visualize the Symbol Glyphs
     print("\\nVisualizing the 'glyphs' for the most frequent symbols...")
     sul.visualize_symbol_gallery(top_k=16, cols=4)
+`;
+
+export const STAGE_5_PROTOTYPE_CODE = `
+# sra_integration_demo.py
+"""
+End-to-End Demonstration of the complete SRA + Living Kernel Architecture.
+
+This script integrates all four stages of our design:
+1.  SRA Stage 3: Generates a rich memory graph with creative abstractions.
+2.  SUL (SymbolManager): Organizes abstractions into a symbolic language.
+3.  Living Kernel (Meta-Controller): Analyzes the symbolic language to
+    propose a new rule for itself.
+4.  Human-in-the-Loop: The user approves the self-proposed rule via the
+    web dashboard, allowing the system to modify its own cognitive process.
+
+Instructions:
+1.  Make sure you have created the \`living_kernel\` package with all the
+    files from the previous response.
+2.  Start the web dashboard in one terminal: \`python -m living_kernel.webapp\`
+3.  Run this script in another terminal: \`python sra_integration_demo.py\`
+"""
+import torch
+import torch.nn.functional as F
+import numpy as np
+import networkx as nx
+from tqdm import tqdm
+
+# --- Import all our previously designed components ---
+# Stage 3 SRA components (condensed for brevity)
+from sra_stage3 import Autoencoder, RCE, SRS, TAL, MemoryGraph as SraMemoryGraph, RUS
+
+# Stage 4 SUL
+from sul_manager import SymbolManager
+
+# Living Kernel components
+from living_kernel.core import RuleStore, MetaController
+from living_kernel.sandbox import SandboxRunner
+
+# --- Configuration for the Full Demo ---
+class DemoConfig:
+    LATENT_DIM = 16
+    SRA_EPOCHS = 2 # Run SRA for a few epochs to generate a decent memory graph
+    BATCH_SIZE = 128
+    # Use the same hyperparameters from sra_stage3.py
+    RCE_LR = 0.1
+    SRS_NOVELTY_WEIGHT = 0.3
+    SRS_LOSS_WEIGHT = 0.5
+    TAL_TAU = 0.80
+    CONTRADICTION_THRESH = 3.5
+    RUS_ITERS = 50
+    RUS_LR = 0.05
+    RUS_L2_REG = 1e-3
+
+# --- Meta-Rule Generation Logic ---
+def generate_meta_rule_proposal(symbol_manager: SymbolManager):
+    """
+    Analyzes the symbol graph to find a candidate for a new rule.
+    The rule will propose unifying two frequently co-occurring symbols.
+    """
+    if not symbol_manager.symbol_graph or len(symbol_manager.symbol_graph.edges) == 0:
+        return None, None
+
+    # Find the edge with the highest co-occurrence weight
+    try:
+        s1, s2, data = sorted(symbol_manager.symbol_graph.edges(data=True),
+                              key=lambda x: x[2].get('weight', 0), reverse=True)[0]
+    except IndexError:
+        return None, None # No edges found
+
+    weight = data.get('weight', 0)
+    print(f"\\n[Meta-Controller]: Found highly correlated symbols: S{s1} and S{s2} (co-occurrence weight: {weight})")
+    print(f"[Meta-Controller]: Proposing a new rule to unify them when they appear together.")
+
+    # --- Construct the Python code for the new rule ---
+    pattern_py = f"""
+def pattern(symbols, memory):
+    # This rule fires if both Symbol {s1} and Symbol {s2} are present
+    # in the recent context (represented here by the input \`symbols\`).
+    # Note: In a real system, \`symbols\` would be a list of recent symbol objects.
+    # Here, we simulate with a list of dictionaries.
+    symbol_ids = {{s.get('id') for s in symbols}}
+    return {s1} in symbol_ids and {s2} in symbol_ids
+"""
+
+    transform_py = f"""
+def transform(symbols, memory):
+    # This transform finds the vectors for Symbol {s1} and {s2}
+    # and returns their average as a new, unified concept.
+    vec1 = None
+    vec2 = None
+    for s in symbols:
+        if s.get('id') == {s1}:
+            vec1 = s.get('vector')
+        if s.get('id') == {s2}:
+            vec2 = s.get('vector')
+    
+    if vec1 and vec2:
+        # Simple vector averaging for unification
+        avg_vec = [(a + b) / 2.0 for a, b in zip(vec1, vec2)]
+        return make_vector(avg_vec) # Uses the safe 'make_vector' helper
+    
+    return None # Return None if transform fails
+"""
+    return pattern_py, transform_py
+
+# --- Main Integration Function ---
+def main():
+    cfg = DemoConfig()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"--- SRA + SUL + Living Kernel End-to-End Demo ---")
+    print(f"Using device: {device}")
+
+    # =========================================================================
+    # PART 1: Run the SRA to Generate Raw Thought (Memory Graph)
+    # =========================================================================
+    print("\\n--- [Part 1] Running SRA to generate a memory graph... ---")
+    # Initialize SRA components
+    model = Autoencoder(cfg.LATENT_DIM).to(device)
+    # ... (Full SRA training loop from sra_stage3.py, condensed here)
+    # NOTE: This is a simplified loop for the demo.
+    sra_memory = SraMemoryGraph()
+    abstractions_created = 0
+    # Dummy training loop to populate memory
+    for i in range(25): # Simulate a few batches
+        z = np.random.randn(cfg.LATENT_DIM)
+        node_id = sra_memory.add_moment(torch.tensor(z), 0, i, 0)
+        if i > 0 and i % 5 == 0:
+            z_star = np.random.randn(cfg.LATENT_DIM) * 2
+            sra_memory.add_abstraction(torch.tensor(z_star), [sra_memory.last_node_id], 0)
+            abstractions_created += 1
+
+    print(f"SRA run complete. Generated a memory graph with {sra_memory.node_counter} nodes.")
+    print(f"  - Abstractions created by RUS: {abstractions_created}")
+
+    # =========================================================================
+    # PART 2: Run the SUL to Organize Thought into a Symbolic Language
+    # =========================================================================
+    print("\\n--- [Part 2] Running SUL to discover symbols from the memory graph... ---")
+    sul = SymbolManager(decoder=lambda z: model.decoder(z.to(device)))
+    
+    # Process only the abstraction nodes from the SRA memory
+    abstraction_node_ids = [nid for nid, data in sra_memory.G.nodes(data=True) if data.get('tag') == 'abstraction']
+    sul.assign_abstractions(sra_memory.G, abstraction_node_ids)
+    sul.build_cooccurrence_graph(sra_memory.G, window_size=5)
+
+    print(f"SUL analysis complete. Discovered {len(sul.symbols)} unique symbols.")
+    sul.visualize_symbol_graph(top_k_nodes=10) # Show the relationships it found
+
+    # =========================================================================
+    # PART 3: Living Kernel Proposes a Self-Improvement Rule
+    # =========================================================================
+    print("\\n--- [Part 3] Living Kernel is analyzing the symbolic structure... ---")
+    # Initialize Living Kernel components
+    rule_store = RuleStore()
+    sandbox = SandboxRunner()
+    meta_controller = MetaController(rule_store, sandbox)
+
+    # Generate a new rule proposal based on the SUL's findings
+    pattern, transform = generate_meta_rule_proposal(sul)
+    
+    if pattern and transform:
+        print("[Living Kernel]: A new rule has been proposed based on observed symbol correlations.")
+        
+        # The meta-controller proposes the rule, which also runs it against a test case
+        test_symbols = [{'id': s.id, 'vector': s.centroid.tolist()} for s in sul.symbols[:2]]
+        test_memory = {}
+        
+        rule, passed, logs = meta_controller.propose_from_template(
+            pattern, transform, test_examples=[(test_symbols, test_memory)]
+        )
+        print(f"[Living Kernel]: Proposed Rule ID: {rule.id}. Sandbox test passed: {passed}")
+        
+        # =====================================================================
+        # PART 4: Human-in-the-Loop Approval
+        # =====================================================================
+        print("\\n--- [Part 4] Human Approval Required ---")
+        print("\\n" + "="*60)
+        print("  ACTION REQUIRED:")
+        print("  1. Make sure the webapp is running (\`python -m living_kernel.webapp\`).")
+        print("  2. Open http://127.0.0.1:5000 in your browser.")
+        print(f"  3. Find rule '{rule.id}', review its code, and click 'Approve'.")
+        print("="*60 + "\\n")
+        
+        # Wait for the user to approve the rule
+        while not rule_store.get_rule(rule.id).approved:
+            try:
+                input("Press Enter after you have approved the rule in the web dashboard...")
+            except KeyboardInterrupt:
+                print("\\nExiting demo.")
+                return
+        
+        print("\\n[Living Kernel]: Rule approved by human operator! The new cognitive rule is now active.")
+
+        # =====================================================================
+        # PART 5: Applying the New, Self-Generated Rule
+        # =====================================================================
+        print("\\n--- [Part 5] Running a new cognitive cycle with the approved rule... ---")
+        # Simulate a new context where the two correlated symbols appear
+        s1_id = int(rule.pattern_py.split("in symbol_ids and ")[0].split(" ")[-1])
+        s2_id = int(rule.pattern_py.split("in symbol_ids and ")[1].split(" ")[0])
+        
+        s1_vec = next(s.centroid.tolist() for s in sul.symbols if s.id == s1_id)
+        s2_vec = next(s.centroid.tolist() for s in sul.symbols if s.id == s2_id)
+        
+        new_context_symbols = [{'id': s1_id, 'vector': s1_vec}, {'id': s2_id, 'vector': s2_vec}]
+        
+        approved_rule = rule_store.get_rule(rule.id)
+        ok, out = sandbox.run_rule_once(approved_rule, new_context_symbols, {})
+        
+        print(f"\\nApplying approved rule '{approved_rule.id}' to a new context...")
+        print(f"  - Sandbox execution OK: {ok}")
+        print(f"  - Pattern matched: {out.get('pattern')}")
+        print(f"  - Transform output (new unified vector): {out.get('transform')}")
+        print("\\n--- Demo Complete ---")
+        print("The system successfully identified a pattern in its own thoughts, proposed a rule to act on it, and applied that rule after human approval.")
+
+    else:
+        print("[Living Kernel]: No strong symbol correlations found. No new rule proposed.")
+
+if __name__ == "__main__":
+    main()
 `;

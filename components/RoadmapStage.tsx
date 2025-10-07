@@ -11,7 +11,7 @@ interface RoadmapStageProps {
 const RoadmapStage: React.FC<RoadmapStageProps> = ({ stageData }) => {
   const [prototypeToShow, setPrototypeToShow] = useState<number | null>(null);
 
-  const canShowPrototype = stageData.stage === 1 || stageData.stage === 2 || stageData.stage === 3 || stageData.stage === 4;
+  const canShowPrototype = stageData.stage >= 1 && stageData.stage <= 5;
 
   return (
     <section>
